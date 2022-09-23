@@ -14,7 +14,7 @@ import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME
+from homeassistant.const import CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME, CONF_CUSTOMIZE_DOMAIN
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client, config_validation as cv
@@ -40,6 +40,7 @@ CONFIG_SCHEMA = vol.Schema(
                 {
                     vol.Required(CONF_PASSWORD): cv.string,
                     vol.Required(CONF_USERNAME): cv.string,
+                    vol.Required(CONF_CUSTOMIZE_DOMAIN): cv.string,
                     vol.Optional(CONF_SCAN_INTERVAL, default=2): cv.positive_int,
                 },
             )
@@ -66,6 +67,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
                 data={
                     CONF_USERNAME: conf[CONF_USERNAME],
                     CONF_PASSWORD: conf[CONF_PASSWORD],
+                    CONF_CUSTOMIZE_DOMAIN: conf[CONF_CUSTOMIZE_DOMAIN]
                 },
             )
         )
@@ -83,6 +85,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hive_config["options"].update(
         {CONF_SCAN_INTERVAL: dict(entry.options).get(CONF_SCAN_INTERVAL, 120)}
     )
+    hive_config["house"] = dict(entry.options).get(CONF_CUSTOMIZE_DOMAIN, None)
     hass.data[DOMAIN][entry.entry_id] = hive
 
     try:
