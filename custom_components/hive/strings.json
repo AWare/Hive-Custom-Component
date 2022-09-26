@@ -7,7 +7,9 @@
         "data": {
           "username": "[%key:common::config_flow::data::username%]",
           "password": "[%key:common::config_flow::data::password%]",
-          "scan_interval": "Scan Interval (seconds)"
+          "scan_interval": "Scan Interval (seconds)",
+          "customize_domain":"house id"
+
         }
       },
       "2fa": {
@@ -52,7 +54,9 @@
         "title": "Options for Hive",
         "description": "Update the scan interval to poll for data more often.",
         "data": {
-          "scan_interval": "Scan Interval (seconds)"
+          "scan_interval": "Scan Interval (seconds)",
+          "customize_domain":"house id"
+
         }
       }
     }

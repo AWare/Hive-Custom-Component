@@ -39,7 +39,9 @@
               "data": {
                   "password": "Password",
                   "scan_interval": "Scan Interval (seconds)",
-                  "username": "Username"
+                  "username": "Username",
+                  "customize_domain":"house id"
+
               },
               "description": "Enter your Hive login information.",
               "title": "Hive Login"
@@ -50,7 +52,9 @@
       "step": {
           "user": {
               "data": {
-                  "scan_interval": "Scan Interval (seconds)"
+                  "scan_interval": "Scan Interval (seconds)",
+                  "customize_domain":"house id"
+
               },
               "description": "Update the scan interval to poll for data more often.",
               "title": "Options for Hive"
